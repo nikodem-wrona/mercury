@@ -1,0 +1,45 @@
+@import '../../../../styles/variables.scss';
+
+$borderWidth: 1px;
+$borderColor: rgba($color: #000000, $alpha: .1);
+$font-size: 14px;
+
+.sidebarWrapper {
+  height: 100%;
+  width: 100%;
+  padding: .7rem;
+  background-color: $background-3;
+  border-radius: $borderRadius;
+  box-shadow: $boxShadow;
+}
+
+.sidebarItemList {
+  & > li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: color .2s ease-in-out;
+    
+    .icon {
+      display: flex;
+      align-items: center;
+      margin-right: 1rem;
+      
+      & > svg {
+        width: 2rem;
+        height: 2rem; 
+      }
+    }
+
+    .label {
+      font-size: $font-size;  
+    }
+
+    &:hover {
+      color: $textHighlighted;
+    }
+  }
+}

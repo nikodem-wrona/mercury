@@ -1,0 +1,106 @@
+@import '../../../styles/variables.scss';
+
+.shared {
+  display: inline-block;
+  border: 1.5px solid;
+  border-radius: .4rem;
+  padding: .8rem 1.8rem;
+  min-width: 80px;
+  margin: 0;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 200ms border-color 200ms;
+  appearance: none;
+  outline: 0;
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  color: $buttonPrimaryColor;
+  background-color: $buttonPrimaryBackgroundColor;
+  border-color: $buttonPrimaryBorderColor;
+
+  &:focus {
+    background-color: $buttonPrimaryBackgroundColor;
+    border-color: $buttonPrimaryBorderColor;
+  }
+
+  &:hover {
+    color: $buttonPrimaryTextHoverColor;
+    background-color: $buttonPrimaryHoverBackgroundColor;
+    border-color: $buttonPrimaryBorderColor;
+  }
+
+  &:active {
+    background-color: $buttonPrimaryHoverBackgroundColor;
+    border-color: $buttonPrimaryBorderColor;
+  }
+
+  &:disabled {
+    background-color: $buttonPrimaryDisabledBackgroundColor;
+    border-color: $buttonPrimaryDisabledBackgroundColor;
+  }
+}
+
+.secondary {
+  color: $buttonSecondaryTextColor;
+  background-color: $buttonSecondaryBackgroundColor;
+  border-color: $buttonSecondaryBorderColor;
+
+  &:focus {
+    background-color: $buttonSecondaryBackgroundColor;
+    border-color: $buttonSecondaryBorderColor;
+  }
+
+  &:hover {
+    color: $buttonSecondaryTextHoverColor;
+    background-color: $buttonSecondaryHoverBackgroundColor;
+    border-color: $buttonSecondaryBorderColor;
+  }
+
+  &:active {
+    background-color: $buttonSecondaryHoverBackgroundColor;
+    border-color: $buttonSecondaryBorderColor;
+  }
+
+  &:disabled {
+    background-color: $buttonSecondaryDisabledBackgroundColor;
+    border-color: $buttonSecondaryDisabledBackgroundColor;
+  }
+}
+
+.error {
+  color: $buttonErrorColor;
+  background-color: $buttonErrorBackgroundColor;
+  border-color: $buttonErrorBackgroundColor;
+
+  &:hover {
+    background-color: $buttonErrorHoverColor;
+    border-color: $buttonErrorHoverColor;
+  }
+
+  &:focus {
+    background-color: $buttonErrorHoverColor;
+    border-color: $buttonErrorHoverColor;
+  }
+
+  &:active {
+    background-color: $buttonErrorHoverColor;
+    border-color: $buttonErrorHoverColor;
+  }
+
+  &:disabled {
+    background-color: $buttonErrorDisabledBackgroundColor;
+    border-color: $buttonErrorDisabledBackgroundColor;
+  }
+}

@@ -1,0 +1,89 @@
+$background-1: #1B1B1B;
+$background-2: #161616;
+$background-3: #1B1B1B;
+$background-4: #000;
+
+$textLight: #7C899E;
+$textHighlighted: #fff;
+$textDark: #000;
+$textError: #C60A16;
+
+$primaryLight: #fff;
+$primaryMedium: rgba(234, 237, 240, 0.9);
+$primaryMediumDark: rgba(234, 237, 240, 0.7);
+$primaryDark: #000;
+
+$secondaryLight: #DCDCDC;
+$secondaryMedium: #DCDCDC;
+$secondaryMediumDark: #000;
+$secondaryDark: #000;
+
+$primaryBrand: #0767ed;
+$primaryBrandDark: rgb(5, 85, 195);
+
+$errorLight: #FCD6D6;
+$errorMedium: #C60A16;
+$focus: #C6E0FF;
+
+$success: #00875C;
+$warning: #FEE197;
+
+$black: #000000;
+
+$primaryText: $textDark;
+$secondaryText: $textLight;
+$brandText: $primaryBrand;
+$errorText: $textError;
+
+$primaryIndicator: $textLight;
+$secondaryIndicator: $primaryDark;
+$buttonPrimaryColor: $textDark;
+
+$buttonPrimaryBackgroundColor: $primaryLight;
+$buttonPrimaryBorderColor: $primaryMedium;
+$buttonPrimaryHoverBackgroundColor: $primaryMediumDark;
+$buttonPrimaryDisabledBackgroundColor: $primaryMediumDark;
+$buttonPrimaryTextHoverColor: $primaryBrand;
+
+$buttonSecondaryBackgroundColor: $primaryBrand;
+$buttonSecondaryBorderColor: $primaryBrand;
+$buttonSecondaryHoverBackgroundColor: $primaryBrandDark;
+$buttonSecondaryDisabledBackgroundColor: $primaryMediumDark;
+$buttonSecondaryTextColor: $textHighlighted;
+$buttonSecondaryTextHoverColor: $textLight;
+
+$buttonErrorColor: $textHighlighted;
+$buttonErrorBackgroundColor: $textError;
+$buttonErrorHoverColor: $textError;
+$buttonErrorDisabledBackgroundColor: $errorLight;
+
+$buttonFocusOutline: $primaryMedium;
+$linkFocusOutline: $primaryMedium;
+
+$primaryBackground: $background-1;
+$secondaryBackground: $background-3;
+
+$extraSmall: 0.4rem;
+$small: 0.8rem;
+$medium: 1.6rem;
+$large: 2.4rem;
+$extraLarge: 3.2rem;
+
+$font12: 1.2rem;
+$font14: 1.4rem;
+$font18: 1.8rem;
+$font20: 2rem;
+$font24: 2.4rem;
+$font25: 2.5rem;
+
+$navbarHeight: 8.5rem;
+
+$regular: 400;
+$medium: 500;
+$semiBold: 600;
+$bold: 700;
+$extraBold: 800;
+$heavy: 900;
+
+$boxShadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
+$borderRadius: 1.2rem;

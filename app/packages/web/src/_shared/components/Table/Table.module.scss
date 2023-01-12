@@ -1,0 +1,73 @@
+@import "../../../styles/variables.scss";
+
+$borderWidth: 1px;
+$borderColor: rgba($color: #000000, $alpha: .1);
+
+.tableWrapper {
+  height: 100%;
+  width: 100%;
+  background-color: $background-3;
+  border-radius: $borderRadius;
+  box-shadow: $boxShadow; 
+
+  .tableInnerWrapper {
+    height: 100%;
+    width: 100%;
+    border-radius: $borderRadius;
+    overflow-x: scroll;
+  }
+  
+  .tableTitleRow {
+    text-align: start;
+    padding: 1.5rem 1rem;
+    font-size: $font14;
+    border-bottom: $borderWidth $borderColor solid;
+  }
+  
+  .tableHeaderRow {
+    border-bottom: $borderWidth $borderColor solid;
+  }
+  
+  .tableDataRow {
+    cursor: pointer;
+    border-bottom: $borderWidth $borderColor solid;
+    transition: background-color .2s ease-in-out;
+  
+    &:hover {
+      background-color: $borderColor;
+    }
+  }
+  
+  .table {  
+    width: 100%;
+    border-radius: .4rem;
+  }
+  
+  .tableHeader {
+    text-align: start;
+    padding: 1rem;
+    font-size: $font12;
+  }
+  
+  .tableHeaderContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .addButton {
+      cursor: pointer;
+
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+  
+  .tableData {
+    text-align: start;
+    padding: 1.5rem 1rem;
+    font-size: $font12;
+  }
+}
+

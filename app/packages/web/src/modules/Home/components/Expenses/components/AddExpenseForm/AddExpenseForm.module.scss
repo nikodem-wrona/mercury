@@ -1,0 +1,27 @@
+@import '../../../../../../styles/variables.scss';
+
+.addExpenseFormWrapper {
+  background-color: $background-2;
+  
+  .sectionBody {
+    margin-top: 5rem;
+    
+    .row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    
+      .gap {
+        margin-right: 1rem;
+        margin-left: 1rem;
+      }
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 4rem;
+    }
+  }
+}
