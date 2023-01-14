@@ -2,7 +2,7 @@ name: Build & Push to Github Packages
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   buildAndPush:
