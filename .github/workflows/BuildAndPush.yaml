@@ -16,7 +16,7 @@ jobs:
 
       - name: Build api Docker image
         run: |
-          docker build --tag "docker.pkg.github.com/nikodem-wrona/mercury/mercury-api:dev" .
+          docker build --tag "docker.pkg.github.com/nikodem-wrona/mercury/mercury-api:dev" ./app/packages/api/
       - name: Push api Docker image
         run: |
           docker push "docker.pkg.github.com/nikodem-wrona/mercury/mercury-api:dev"
