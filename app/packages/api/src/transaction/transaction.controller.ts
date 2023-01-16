@@ -30,28 +30,42 @@ export class TransactionController {
   }
 
   @Get('transactions')
-  async getAllTransactions(): Promise<Transaction[]> {
-    return this.transactionService.getAllTransactions();
+  async getAllTransactions(
+    @Request() req: CustomRequest,
+  ): Promise<Transaction[]> {
+    const { userId } = req;
+    return this.transactionService.getAllTransactions(userId);
   }
 
   @Get('transaction/:id')
   async getTransactionById(
     @Param('id') id: TransactionId,
+    @Request() req: CustomRequest,
   ): Promise<Transaction> {
-    return this.transactionService.getTransactionById(id);
+    const { userId } = req;
+    return this.transactionService.getTransactionById(id, userId);
   }
 
   @Put('transaction/:id')
   async updateTransaction(
     @Param('id') id: TransactionId,
     @Body() updateTransactionDTO: UpdateTransactionDTO,
+    @Request() req: CustomRequest,
   ): Promise<Transaction> {
-    console.log(updateTransactionDTO, id);
-    return this.transactionService.updateTransaction(id, updateTransactionDTO);
+    const { userId } = req;
+    return this.transactionService.updateTransaction(
+      id,
+      updateTransactionDTO,
+      userId,
+    );
   }
 
   @Delete('transaction/:id')
-  async deleteTransaction(@Param('id') id: TransactionId): Promise<void> {
-    await this.transactionService.deleteTransaction(id);
+  async deleteTransaction(
+    @Param('id') id: TransactionId,
+    @Request() req: CustomRequest,
+  ): Promise<void> {
+    const { userId } = req;
+    await this.transactionService.deleteTransaction(id, userId);
   }
 }

@@ -48,8 +48,10 @@ export class TransactionService {
     return transactionMapper.fromDB(result);
   }
 
-  async getAllTransactions(): Promise<Transaction[]> {
-    const result = await this.transactionModel.find();
+  async getAllTransactions(userId: string): Promise<Transaction[]> {
+    const result = await this.transactionModel.find({
+      users_with_access: { $elemMatch: { $eq: userId } },
+    });
 
     if (result.length === 0) {
       return [];
@@ -58,8 +60,15 @@ export class TransactionService {
     return result.map(transactionMapper.fromDB);
   }
 
-  async getTransactionById(transactionId: TransactionId): Promise<Transaction> {
+  async getTransactionById(
+    transactionId: TransactionId,
+    userId: string,
+  ): Promise<Transaction> {
     const result = await this.transactionModel.findById(transactionId);
+
+    if (result.users_with_access.indexOf(userId) === -1) {
+      throw new Error('User does not have access to this transaction');
+    }
 
     if (!result) {
       throw new Error('Transaction could not be found');
@@ -71,6 +80,7 @@ export class TransactionService {
   async updateTransaction(
     transactionId: TransactionId,
     updateTransactionDTO: UpdateTransactionDTO,
+    userId: string,
   ): Promise<Transaction> {
     const {
       title,
@@ -82,6 +92,8 @@ export class TransactionService {
       type,
       users_with_access,
     } = updateTransactionDTO;
+
+    await this.getTransactionById(transactionId, userId);
 
     const result = await this.transactionModel.findByIdAndUpdate(
       transactionId,
@@ -106,7 +118,11 @@ export class TransactionService {
     return transactionMapper.fromDB(result);
   }
 
-  async deleteTransaction(transactionId: TransactionId): Promise<void> {
+  async deleteTransaction(
+    transactionId: TransactionId,
+    userId: string,
+  ): Promise<void> {
+    await this.getTransactionById(transactionId, userId);
     await this.transactionModel.findByIdAndDelete(transactionId);
   }
 }
