@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 import Image from 'next/image';
 
-import styles from './topbar.module.scss';
+import styles from './Topbar.module.scss';
 
 export const Topbar: FC = () => {
   const { user } = useAuth0();

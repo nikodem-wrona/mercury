@@ -1,0 +1,24 @@
+name: Build & Push to Github Packages
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "app/packages/api"
+      - ".github/workflows"
+jobs:
+  buildAndPush:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Docker login
+        run: docker login docker.pkg.github.com -u $GITHUB_ACTOR --password ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build api Docker image
+        run: |
+          docker build --tag "docker.pkg.github.com/nikodem-wrona/mercury/mercury-api:dev" ./app/packages/api/
+      - name: Push api Docker image
+        run: |
+          docker push "docker.pkg.github.com/nikodem-wrona/mercury/mercury-api:dev"
