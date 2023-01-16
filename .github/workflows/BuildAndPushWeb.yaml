@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - "app/packages/web"
+      - "app/packages/web/**"
       - ".github/workflows/BuildAndPushWeb.yaml"
 jobs:
   buildAndPushWeb:
