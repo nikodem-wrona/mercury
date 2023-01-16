@@ -5,7 +5,8 @@ FROM node:14-alpine
 WORKDIR /app/
 
 # Copy package.json and package-lock.json to the container
-COPY ./app/packages/web/package*.json ./
+COPY ./app/packages/web/package.json ./
+COPY ./app/packages/web/yarn.lock ./
 
 # Install dependencies
 RUN yarn
@@ -18,3 +19,4 @@ RUN yarn build
 
 # Start the app
 CMD [ "yarn", "start" ]
+
