@@ -18,7 +18,7 @@ jobs:
 
       - name: Build web Docker image
         run: |
-          docker build --tag "docker.pkg.github.com/nikodem-wrona/mercury/mercury-web:dev" ./app/packages/web/
+          docker build --tag "docker.pkg.github.com/nikodem-wrona/mercury/mercury-web:dev" .
       - name: Push web Docker image
         run: |
           docker push "docker.pkg.github.com/nikodem-wrona/mercury/mercury-web:dev"
