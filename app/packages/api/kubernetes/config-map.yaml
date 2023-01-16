@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mercury-api-config-map
+data:
+  # Add your environment variables here
+  NODE_ENV: production
+  PORT: "3002"
+  MONGODB_URI: mongodb://root:example@localhost:27017/progress?authMechanism=DEFAULT&authSource=admin
+  AUTH0_ISSUER_UR: https://nikodems-home-lab.eu.auth0.com/
+  AUTH0_AUDIENCE: https://nikodemwrona.dev/lab/analytics
+

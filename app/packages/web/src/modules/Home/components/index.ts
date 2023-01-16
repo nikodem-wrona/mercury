@@ -1,3 +1,2 @@
-export * from './Incomes';
-export * from './Expenses';
+export * from './Transactions';
 export * from './Sidebar';

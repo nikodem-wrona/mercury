@@ -1,9 +1,9 @@
 export type UserId = string;
 
-export type IncomeId = string;
+export type TransactionId = string;
 
-export type Income = {
-  id: IncomeId;
+export type Transaction = {
+  id: TransactionId;
   title: string;
   description: string;
   currency: string;
@@ -11,21 +11,8 @@ export type Income = {
   paid_at: string;
   created_at: string;
   updated_at: string;
-  user_id: UserId;
-}
-
-
-export type ExpenseId = string;
-
-export type Expense = {
-  id: ExpenseId;
-  title: string;
-  currency: string;
-  amount: number;
-  description: string;
-  created_at: string;
-  updated_at: string;
+  created_by: UserId;
+  users_with_access: UserId[];
   is_recurring: boolean;
-  paid_at: string;
-  user_id: UserId;
+  type: 'income' | 'expense' | 'stock';
 }

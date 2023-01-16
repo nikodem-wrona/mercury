@@ -1,0 +1,87 @@
+@import "../../../../styles/variables";
+
+$borderWidth: 1px;
+$borderColor: rgba($color: #000000, $alpha: .1);
+
+.transactionsWrapper {
+  height: 100%;
+  width: 100%;
+  background-color: $background-3;
+  border-radius: $borderRadius;
+  box-shadow: $boxShadow;
+  
+  .transactionsInnerWrapper {
+    height: 100%;
+    width: 100%;
+    border-radius: $borderRadius;
+  }
+  
+  .tableTitleRow {
+    text-align: start;
+    padding: 1.5rem 1rem;
+    font-size: $font14;
+    border-bottom: $borderWidth $borderColor solid;
+  }
+  
+  .tableHeaderRow {
+    border-bottom: $borderWidth $borderColor solid;
+  }
+  
+  .tableDataRow {
+    cursor: pointer;
+    border-bottom: $borderWidth $borderColor solid;
+  
+    &:hover {
+      background-color: #F7F7FA;
+    }
+  }
+  
+  .table {
+    width: 100%;
+    border-radius: .4rem;
+  }
+  
+  .tableHeader {
+    text-align: start;
+    padding: 1rem;
+    font-size: $font12;
+  }
+  
+  .tableHeaderContent {
+    display: flex;
+    justify-content: space-between;
+
+    .addButton {
+      cursor: pointer;
+
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+  
+  .tableData {
+    text-align: start;
+    padding: 1.5rem 1rem;
+    font-size: $font12;
+  }
+
+  .tableModal {
+    position: fixed;
+    background-color: rgba($color: #000000, $alpha: .8);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    .contentWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+

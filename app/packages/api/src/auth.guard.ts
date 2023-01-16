@@ -1,17 +1,19 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-
-import { verify } from 'jsonwebtoken';
-import * as jwksClient from 'jwks-rsa';
 import { ConfigService } from '@nestjs/config';
+import { GetPublicKeyOrSecret, verify } from 'jsonwebtoken';
+import * as jwksClient from 'jwks-rsa';
 
 import { Config } from './config';
+import { CustomRequest, isJWTPayload } from './auth.types';
+import { Request } from 'express';
 
 @Injectable()
 export class JwtAuthGuard {
   constructor(private configService: ConfigService<Config>) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const headers = context?.getArgByIndex(0)?.headers;
+    const ctx = context.switchToHttp();
+    const headers = ctx.getRequest()?.headers;
 
     if (!headers) {
       return false;
@@ -29,7 +31,7 @@ export class JwtAuthGuard {
       )}.well-known/jwks.json`,
     });
 
-    const getKey = (header, callback): void => {
+    const getKey: GetPublicKeyOrSecret = (header, callback): void => {
       client.getSigningKey(
         header.kid,
         (error: Error, key: jwksClient.RsaSigningKey) => {
@@ -61,6 +63,11 @@ export class JwtAuthGuard {
 
     const decodedToken = await decodedTokenPromise;
 
-    return !!decodedToken;
+    if (isJWTPayload(decodedToken)) {
+      ctx.getRequest<CustomRequest>().userId = decodedToken.sub;
+      return true;
+    }
+
+    return false;
   }
 }

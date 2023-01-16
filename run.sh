@@ -15,7 +15,6 @@ then
 fi
 
 echo "Starting $1 package"
-cd ./app/ 
+cd ./app/packages/$1 
 yarn
-cd ./packages/$1 
 yarn start:dev

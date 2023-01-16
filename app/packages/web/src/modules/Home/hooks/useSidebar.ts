@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export enum Content {
-  Incomes = 'incomes',
+  Transactions = 'transactions',
   Expenses = 'expenses',
 }
 
@@ -11,7 +11,7 @@ type UseSidebar = () => {
 }
 
 export const useSidebar: UseSidebar = () => {
-  const [content, setContent] = useState<Content>(Content.Incomes);
+  const [content, setContent] = useState<Content>(Content.Transactions);
   
   const handleSetContent = (content: Content) => {
     setContent(content);

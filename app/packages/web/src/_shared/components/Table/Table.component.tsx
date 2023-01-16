@@ -5,12 +5,12 @@ import { Modal } from '../Modal/Modal.component';
 
 import styles from './Table.module.scss';
 
-type GenericItemType = { id: string } & { [key in string]: string | number | boolean }
+type GenericItemType = { id: string } & { [key in string]: string | number | boolean | string[] }
 
 type TableComponentProps<T extends GenericItemType> = {
   items: T[];
-  headers: string[];
   header: string;
+  schema: Array<{ key: string, label: string }>
   addItemModalPayload: {
     header: string;
     renderContent: () => JSX.Element;
@@ -22,9 +22,9 @@ type TableComponentProps<T extends GenericItemType> = {
 }
 
 export function Table<T extends GenericItemType>({
-  headers,
   header,
   items,
+  schema,
   addItemModalPayload,
   editItemModalPayload
 }: TableComponentProps<T>)  {
@@ -62,26 +62,24 @@ export function Table<T extends GenericItemType>({
     }
   }
 
-  const handleEditIncome = (itemId: string) => {
+  const handleEditTransaction = (itemId: string) => {
     setItemToEdit(itemId)
     setModalToShow('edit')
   }
 
   const Headers = useMemo(() => {
-    return headers.map((header) => {
+    return schema.map((item) => {
       return (
-        <th key={`${header}`} className={styles.tableHeader}>{header}</th>
+        <th key={`${item.label}`} className={styles.tableHeader}>{item.label}</th>
       )
     })
-  }, [headers])
+  }, [schema])
 
   const Rows = useMemo(() => {
     const renderRows = (item: T) => {
-      const keys = Object.keys(item);
-
-      return keys.map((key) => {
+      return schema.map((schemaItem) => {
         return (
-          <td key={`${item.id}}-${key}`} className={styles.tableData}>{item[key]}</td>
+          <td key={`${item.id}}-${schemaItem.key}`} className={styles.tableData}>{item[schemaItem.key].toString()}</td>
         )
       })
     }
@@ -90,14 +88,14 @@ export function Table<T extends GenericItemType>({
       <tr
         key={`${item.id}`}
         className={styles.tableDataRow}
-        onClick={() => handleEditIncome(item.id)}
+        onClick={() => handleEditTransaction(item.id)}
       >
         {renderRows(item)}
       </tr>
     ))
-  }, [items])
+  }, [schema, items])
 
-  const headerColumnsCount = headers.length || 0;
+  const headerColumnsCount = schema.length || 0;
 
   return (
     <div className={styles.tableWrapper}>

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mercury-api
+  namespace: mercury
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mercury-api
+  template:
+    metadata:
+      labels:
+        app: mercury-api
+    spec:
+      containers:
+        - name: mercury-api
+          image: docker pull ghcr.io/nikodem-wrona/mercury/mercury-api:dev
+          ports:
+            - containerPort: 3002
+          envFrom:
+            - configMapRef:
+                name: mercury-api-config-map
+
