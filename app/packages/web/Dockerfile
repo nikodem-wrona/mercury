@@ -1,6 +1,6 @@
 FROM node:16.13.0 AS deps
 WORKDIR /app
-RUN echo "ls"
+RUN ls
 COPY ./app/packages/web/package.json ./app/packages/web/yarn.lock ./
 RUN yarn install --frozen-lockfile
 
