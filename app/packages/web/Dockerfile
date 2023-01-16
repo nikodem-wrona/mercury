@@ -1,11 +1,11 @@
 FROM node:16.13.0 AS deps
 WORKDIR /app
-COPY /app/packages/web/package.json app/packages/web/yarn.lock ./
+COPY ./app/packages/web/package.json app/packages/web/yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 FROM node:alpine AS builder
 WORKDIR /app
-COPY /app/packages/web/ . 
+COPY ./app/packages/web/ . 
 COPY --from=deps /app/node_modules ./node_modules
 
 RUN NEXT_PUBLIC_API_URL=APP_NEXT_PUBLIC_API_URL yarn build && yarn install --production --ignore-scripts --prefer-offline
