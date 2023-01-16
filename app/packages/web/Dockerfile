@@ -1,35 +1,20 @@
-FROM node:16.13.0 AS deps
-WORKDIR /app
-RUN ls
-COPY ./app/packages/web/package.json ./app/packages/web/yarn.lock ./
-RUN yarn install --frozen-lockfile
+# Use the official Node.js image as the base image
+FROM node:14-alpine
 
-FROM node:alpine AS builder
-WORKDIR /app
-COPY ./app/packages/web/ . 
-COPY --from=deps /app/node_modules ./node_modules
+# Set the working directory in the container to the app directory
+WORKDIR /app/packages/web
 
-RUN NEXT_PUBLIC_API_URL=APP_NEXT_PUBLIC_API_URL yarn build && yarn install --production --ignore-scripts --prefer-offline
+# Copy package.json and package-lock.json to the container
+COPY app/packages/web/package*.json ./
 
-FROM node:alpine AS runner
-WORKDIR /app
+# Install dependencies
+RUN npm ci
 
-ENV NODE_ENV production
+# Copy the rest of the app's files to the container
+COPY app/packages/web .
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/entrypoint.sh ./entrypoint.sh
+# Build the app
+RUN npm run build
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
-RUN chown -R nextjs:nodejs /app/.next
-
-USER nextjs
-
-EXPOSE 3000
-
-ENTRYPOINT ["/app/entrypoint.sh"]
-
-CMD ["yarn", "start"]
+# Start the app
+CMD [ "npm", "start" ]
