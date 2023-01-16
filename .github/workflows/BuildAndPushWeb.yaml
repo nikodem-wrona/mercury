@@ -1,4 +1,4 @@
-name: Build & Push to Github Packages
+name: Build & Push Web to Github Packages
 on:
   push:
     branches:
