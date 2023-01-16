@@ -5,7 +5,7 @@ on:
       - master
     paths:
       - "app/packages/api"
-      - ".github/workflows"
+      - ".github/workflows/BuildAndPushApi.yaml"
 jobs:
   buildAndPush:
     runs-on: ubuntu-latest
