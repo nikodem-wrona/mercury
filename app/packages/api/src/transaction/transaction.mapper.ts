@@ -1,6 +1,7 @@
 import { Types, Document } from 'mongoose';
 
 import { MongoTransaction } from './transaction.schema';
+import { Transaction } from './transaction.model';
 
 type DBTransaction = Document<unknown, any, MongoTransaction> &
   MongoTransaction & {
@@ -10,7 +11,7 @@ type DBTransaction = Document<unknown, any, MongoTransaction> &
   }>;
 
 export const transactionMapper = {
-  fromDB: (dbTransaction: DBTransaction) => {
+  fromDB: (dbTransaction: DBTransaction): Transaction => {
     return {
       id: dbTransaction.id,
       title: dbTransaction.title,

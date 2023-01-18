@@ -1,16 +1,20 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, flatten } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateTransactionDTO, UpdateTransactionDTO } from './transaction.dto';
 import { TransactionDocument, MongoTransaction } from './transaction.schema';
 import { Transaction, TransactionId } from './transaction.model';
 import { transactionMapper } from './transaction.mapper';
+import { ServerEvents, EventsGateway } from 'src/events';
+import { UserService } from 'src/user';
 
 @Injectable()
 export class TransactionService {
   constructor(
     @InjectModel(MongoTransaction.name)
     private transactionModel: Model<TransactionDocument>,
+    private eventsGateway: EventsGateway,
+    private userService: UserService,
   ) {}
 
   async createTransaction(
@@ -45,7 +49,22 @@ export class TransactionService {
       throw new Error('Transaction could not be created');
     }
 
-    return transactionMapper.fromDB(result);
+    const transaction = transactionMapper.fromDB(result);
+    const users = await this.userService.GetAllUsers();
+
+    const socketIds = flatten(
+      users.map((u) =>
+        u.socketConnections.map((connection) => connection.get('socketId')),
+      ),
+    );
+
+    await this.eventsGateway.SendEvent(
+      ServerEvents.TRANSACTION_CREATED,
+      transaction,
+      socketIds,
+    );
+
+    return transaction;
   }
 
   async getAllTransactions(userId: string): Promise<Transaction[]> {

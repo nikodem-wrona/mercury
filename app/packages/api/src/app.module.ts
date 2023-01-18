@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Config, config } from './config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+
 import { TransactionModule } from './transaction';
+import { EventsModule } from './events';
+
+import { Config, config } from './config';
 
 @Module({
   imports: [
@@ -18,6 +20,7 @@ import { TransactionModule } from './transaction';
       inject: [ConfigService],
     }),
     TransactionModule,
+    EventsModule,
   ],
   controllers: [],
   providers: [],

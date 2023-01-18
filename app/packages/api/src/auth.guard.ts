@@ -5,7 +5,6 @@ import * as jwksClient from 'jwks-rsa';
 
 import { Config } from './config';
 import { CustomRequest, isJWTPayload } from './auth.types';
-import { Request } from 'express';
 
 @Injectable()
 export class JwtAuthGuard {
